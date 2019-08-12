@@ -1269,7 +1269,9 @@ function InstallDockerImages()
     if (!(docker images $Global:NanoserverImage -q))
     {
         docker pull $Global:NanoserverImage
-        if (!($LastExitCode -eq 0)) {
+		$lec=$LastExitCode
+		Write-Host "Exit code: $($lec), !(LastExitCode -eq 0) : $(!($lec -eq 0))"
+        if (!($lec -eq 0)) {
             throw "Failed to pull $Global:NanoserverImage"
         }
     }
